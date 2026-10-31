@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>kurihiro0119</title>
+  <meta name="description" content="kurihiro0119 のページ">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌰</text></svg>">
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --fg: #1d1d1f;
+      --muted: #6b6b70;
+      --card: #ffffff;
+      --border: #e4e4e0;
+      --accent: #c2410c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141416;
+        --fg: #ececee;
+        --muted: #9a9aa2;
+        --card: #1d1d21;
+        --border: #2c2c32;
+        --accent: #fb923c;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 16px 48px;
+    }
+    .avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 36px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    h1 { font-size: 2rem; margin: 20px 0 4px; letter-spacing: -0.01em; }
+    .lead { color: var(--muted); margin: 0 0 40px; }
+    h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 40px 0 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .15s, transform .15s;
+    }
+    a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card strong { display: block; margin-bottom: 4px; }
+    .card span { color: var(--muted); font-size: 0.9rem; }
+    .clock {
+      font-variant-numeric: tabular-nums;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 24px 16px;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="avatar" aria-hidden="true">🌰</div>
+    <h1>kurihiro0119</h1>
+    <p class="lead">ようこそ。ここは GitHub Pages で公開している個人ページです。</p>
+
+    <h2>About</h2>
+    <div class="card">
+      <strong>こんにちは 👋</strong>
+      <span>自己紹介や制作物をここに載せていく予定です。index.html を編集すると内容を変更できます。</span>
+    </div>
+
+    <h2>Links</h2>
+    <div class="grid">
+      <a class="card" href="https://github.com/kurihiro0119" target="_blank" rel="noopener">
+        <strong>GitHub</strong>
+        <span>@kurihiro0119</span>
+      </a>
+      <a class="card" href="https://github.com/kurihiro0119?tab=repositories" target="_blank" rel="noopener">
+        <strong>Repositories</strong>
+        <span>公開リポジトリ一覧</span>
+      </a>
+    </div>
+
+    <h2>Now</h2>
+    <div class="card">
+      <div class="clock" id="clock">--:--:--</div>
+      <span id="date"></span>
+    </div>
+  </main>
+
+  <footer>&copy; <span id="year"></span> kurihiro0119</footer>
+
+  <script>
+    const pad = n => String(n).padStart(2, "0");
+    const days = ["日", "月", "火", "水", "木", "金", "土"];
+    function tick() {
+      const d = new Date();
+      document.getElementById("clock").textContent =
+        `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      document.getElementById("date").textContent =
+        `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日 (${days[d.getDay()]})`;
+    }
+    tick();
+    setInterval(tick, 1000);
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
